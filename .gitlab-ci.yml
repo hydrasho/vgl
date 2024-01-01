@@ -1,19 +1,11 @@
 image: "alpine:latest"
-
-stages:
-  - build
-  - deploy
-
-build:
-  stage: build
+    
+pages:
+  stage: deploy
   script:
     - apk add vala
     - valadoc src/*.vala --pkg=sdl2 -o burgerdoc
     - mv burgerdoc public
-
-pages:
-  stage: deploy
-  script:
     - ls -la
     - echo "Pages deployment job at ${CI_PAGES_URL}"
   artifacts:
