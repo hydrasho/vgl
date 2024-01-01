@@ -4,8 +4,8 @@ pages:
   stage: deploy
   script:
     - apk add vala
-    - valadoc src/*.vala --pkg=sdl2 -o burgerdoc
-    - mv burgerdoc public
+    - valadoc src/*.vala --pkg=sdl2 -o burger
+    - mv burger public
     - ls -la
     - echo "Pages deployment job at ${CI_PAGES_URL}"
   artifacts:
