@@ -1,5 +1,30 @@
 namespace BG {
 
+/**
+* Simple example for use Event class
+*
+* {{{
+* void main() {
+* 	var win = new BG.Window("hello world");
+* 	var event = BG.Event.default();
+* 
+* 	event.onClose.connect(win.close);
+*
+* 	event.onMouseUp.connect((x, y) => {
+* 		print(@"you clicked at x: [$x] y: [$y]\n");
+* 	});
+* 
+* 	while (win.is_open) {
+* 		event.poll();
+* 		
+* 		win.clear();
+* 		win.display();
+* 	}
+* }
+* }}}
+* 
+* Singleton class for manage event
+*/
 public class Event {
 	private Event () { }
 
@@ -14,7 +39,7 @@ public class Event {
 	private static BG.Event? instance = null;
 
 	/**
-	* Poll for currently pending events
+	* Poll for currently pending events this fonction call all functions connected
 	*/
 	public void poll() {
 		if (SDL.Event.poll(out event) == 0)
