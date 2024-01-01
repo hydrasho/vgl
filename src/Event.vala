@@ -107,6 +107,9 @@ public class Event {
 	private SDL.Event event;
 }
 
+/**
+ * different types of mouse buttons.
+ */
 public enum MouseType {
 	LEFT = 1,
 	MIDDLE = 2,

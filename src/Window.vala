@@ -1,6 +1,29 @@
 namespace BG {
 
+/**
+ * Represents a graphical window with an associated renderer.
+ *
+ * {{{
+ * using BG;
+ * 
+ * void main() {
+ * 	var win = new Window("my supra-title", 100, 150);
+ * 	
+ * 	while (win.is_open) {
+ * 		win.clear(Color.Red);
+ * 		win.display();
+ * 	}
+ * }
+ * }}}
+ */
 public class Window {
+	/**
+     * Constructor for creating a window with the specified title, width, and height.
+     *
+     * @param title The title of the window (default is "default title").
+     * @param width The width of the window (default is 500).
+     * @param height The height of the window (default is 500).
+     */
 	public Window(string title = "default title", int width = 500, int height = 500) {
 		window = new SDL.Video.Window(title, 700, 200, width, height, 0);
 		renderer = SDL.Video.Renderer.create(window, -1, SDL.Video.RendererFlags.ACCELERATED);
@@ -50,6 +73,10 @@ public class Window {
 		renderer.fill_rect ({0, 0, width, height});
 	}
 
+	/**
+     * test if the window is open 
+     * @return true if the window is open
+     */
 	public bool is_open {get; private set; default=true;}
 
 	public int fps {get;set;default=60;}
