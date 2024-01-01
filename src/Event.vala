@@ -4,9 +4,11 @@ namespace BG {
 * Simple example for use Event class
 *
 * {{{
+* using BG;
+*
 * void main() {
-* 	var win = new BG.Window("hello world");
-* 	var event = BG.Event.default();
+* 	var win = new Window("hello world");
+* 	var event = Event.default();
 * 
 * 	event.onClose.connect(win.close);
 *
