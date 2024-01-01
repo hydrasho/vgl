@@ -1,11 +1,11 @@
-## [The Documentation is here: Click on me](https://burger-hydrasho-1cf73bf5fedac8972823d83b8ce202a4bf200d4d798061d.gitlab.io/burgerdoc/index.htm)
+## [The Documentation is here: Click on me](https://burger-hydrasho-1cf73bf5fedac8972823d83b8ce202a4bf200d4d798061d.gitlab.io/burger/index.htm)
 
 # how install it ?
 
 
 ### meson.build
 
-create your project directory and add the *burger.wrap* download
+create your project directory and add the [burger.wrap](https://gitlab.com/hydrasho/burger/-/raw/master/burger.wrap) download
 
 ```
 project/
