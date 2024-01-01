@@ -14,7 +14,8 @@ public class Sprite : Drawable {
 		unowned SDL.Video.Texture tex = texture.get_sdl_texture(renderer);
 		renderer.copy(tex,
 			this.rect,
-			{this.x, this.y, this.rect.w, this.rect.h});
+			{position.x, position.y, texture.width, texture.height});
+
 	}
 
 	public Texture texture;

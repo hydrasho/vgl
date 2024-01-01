@@ -13,17 +13,9 @@ public abstract class Drawable {
 
 	public bool visible {get;set;default=true;}
 
-	public Vector2i position {
-		get {
-			return {rect.x, rect.y};
-		}
-		set{
-			rect.x = value.x;
-			rect.y = value.y;
-		}
-	}
-	public int x {get {return rect.x;} set {rect.x = value;}}
-	public int y {get {return rect.y;} set {rect.y = value;}}
+	public Vector2i position;
+	public int x {get {return position.x;} set {position.x = value;}}
+	public int y {get {return position.y;} set {position.y = value;}}
 	public uint width {get {return rect.w;} set {rect.w = value;}}
 	public uint height {get {return rect.h;} set {rect.h = value;}}
 	
