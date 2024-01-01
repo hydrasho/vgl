@@ -104,12 +104,6 @@ public class Event {
 	*/
 	public signal void onMouseMove(int x, int y, int xrel, int yrel);
 
-
-	public bool is_up		{get;set;default=false;} 
-	public bool is_down 	{get;set;default=false;} 
-	public bool is_left		{get;set;default=false;} 
-	public bool is_right	{get;set;default=false;} 
-
 	private SDL.Event event;
 }
 

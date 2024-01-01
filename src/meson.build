@@ -5,4 +5,6 @@ src_vala = [
   files('Sprite.vala'),
   files('Texture.vala'),
   files('Window.vala'),
+  files('Shape.vala'),
+  files('Drawable.vala')
 ]

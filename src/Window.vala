@@ -22,12 +22,9 @@ public class Window {
      *
      * @param sprite The sprite to be drawn.
      */
-	public void draw(Sprite sprite) {
-		unowned SDL.Video.Texture tex = sprite.get_sdl_texture(renderer);
-		if (sprite.visible) {
-			renderer.copy(tex,
-				sprite.texture_rect,
-				{sprite.x, sprite.y, sprite.texture_rect.w, sprite.texture_rect.h});
+	public void draw(Drawable drawable) {
+		if (drawable.visible) {
+			drawable.draw(renderer);
 		}
 	}
 
@@ -56,11 +53,13 @@ public class Window {
 	public bool is_open {get; private set; default=true;}
 
 	public int fps {get;set;default=60;}
-	private Timer fps_timer;
 	public string title {get {return window.title;} set {window.title = value;}}
 	public int width {get; private set;}
 	public int height {get; private set;}
 	public SDL.Video.Renderer renderer;
+	
+
+	private Timer fps_timer;
 	private SDL.Video.Window window;
 }
 }
