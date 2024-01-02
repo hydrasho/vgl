@@ -6,5 +6,7 @@ src_vala = [
   files('Texture.vala'),
   files('Window.vala'),
   files('Shape.vala'),
-  files('Drawable.vala')
+  files('Drawable.vala'),
+  files('CircleShape.vala'),
+  files('RectangleShape.vala')
 ]
