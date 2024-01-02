@@ -33,12 +33,13 @@ public struct Color {
 	* @param blue  The blue component of the color (0-255).
 	* @param alpha The alpha (transparency) component of the color (0-255).
 	*/
-	Color(uint8 red, uint8 green, uint8 blue, uint8 alpha = 255) {
+	public Color(uint8 red, uint8 green, uint8 blue, uint8 alpha = 255) {
 		this.red = red;
 		this.green = green;
 		this.blue = blue;
 		this.alpha = alpha;
 	}
+
 	uint8 red;
 	uint8 green;
 	uint8 blue;
