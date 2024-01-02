@@ -1,4 +1,4 @@
-project('burger', ['c', 'vala'], version : '3.0', default_options : ['warning_level=3'])
+project('burger', ['c', 'vala'], version : '3.0', default_options: ['optimization=3'])
 add_project_arguments('--enable-experimental', language: 'vala')
 
 subdir('src')
@@ -8,7 +8,8 @@ add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
 dep_vala = [
   dependency('sdl2'),
   dependency('glib-2.0'),
-  dependency('gobject-2.0')
+  dependency('gobject-2.0'),
+  meson.get_compiler('c').find_library('m')
 ]
 
 burger_lib = library('burger',
