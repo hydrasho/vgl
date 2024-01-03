@@ -8,5 +8,6 @@ src_vala = [
   files('Shape.vala'),
   files('Drawable.vala'),
   files('CircleShape.vala'),
+  files('EllipseShape.vala'),
   files('RectangleShape.vala')
 ]
