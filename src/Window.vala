@@ -45,9 +45,9 @@ public class Window {
      *
      * @param sprite The sprite to be drawn.
      */
-	public void draw(Drawable drawable) {
+	public void draw(Drawable drawable, Vector2i? pos = null) {
 		if (drawable.visible) {
-			drawable.draw(renderer);
+			drawable.draw(renderer, pos);
 		}
 	}
 

@@ -4,6 +4,9 @@ errordomain ColumnsError {
 	TEXTURE_INVALID
 }
 
+public struct Rect : SDL.Video.Rect {
+}
+
 /**
  * Represents a color in RGBA format.
  *

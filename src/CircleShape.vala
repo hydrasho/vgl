@@ -14,10 +14,13 @@ public class CircleShape : Shape {
 		this.radius = radius;
 	}
 	
-	public override void draw(SDL.Video.Renderer renderer) {
+	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {
 		base.draw(renderer);
-		int CX = position.x;
-		int CY = position.y;
+		if (pos == null)
+			pos = position;
+
+		int CX = pos.x;
+		int CY = pos.y;
 
 		int r2 = radius * radius;
 		for (int y = -radius; y <= 0; ++y)

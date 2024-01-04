@@ -14,9 +14,11 @@ public class RectangleShape : Shape {
 		base(width, height, color);
 	}
 	
-	public override void draw(SDL.Video.Renderer renderer) {
+	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {
+		if (pos == null)
+			pos = position;
 		base.draw(renderer);
-		renderer.fill_rect ({position.x, position.y, width, height});
+		renderer.fill_rect ({pos.x, pos.y, width, height});
 	}
 }
 

@@ -5,7 +5,13 @@ namespace BG {
  * Represents an abstract class for objects that can be drawn.
  */
 public abstract class Drawable {
-	public abstract void draw(SDL.Video.Renderer renderer);
+	 /**
+     * Abstract method that must be implemented by subclasses to define how the object is drawn on the renderer.
+     *
+     * @param renderer The SDL renderer on which the object is drawn.
+     * @param pos Optional parameter specifying the position at which to draw the object.
+     */
+	public abstract void draw(SDL.Video.Renderer renderer, Vector2i? pos = null);
 
 	/**
      * Moves the object by the specified offset in the x and y directions.

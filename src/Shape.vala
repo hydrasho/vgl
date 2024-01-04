@@ -11,7 +11,7 @@ public abstract class Shape : Drawable {
 		position = {0, 0};
 	}
 
-	public override void draw(SDL.Video.Renderer renderer) {
+	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {
 		renderer.set_draw_color (color.red, color.green, color.blue, color.alpha);
 	}
 
