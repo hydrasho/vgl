@@ -3,11 +3,13 @@ image: "alpine:latest"
 pages:
   stage: deploy
   script:
-    - apk add vala
-    - valadoc src/*.vala --pkg=sdl2 -o burger
+    - apk add vala libgee
+    - valadoc src/*.vala --pkg=sdl2 --pkg=gee-0.8 -o burger
     - mv burger public
     - ls -la
     - echo "Pages deployment job at ${CI_PAGES_URL}"
   artifacts:
     paths:
       - public
+  only:
+  - master
