@@ -27,6 +27,7 @@ public class Window {
 	public Window(string title = "default title", int width = 500, int height = 500) {
 		window = new SDL.Video.Window(title, 700, 200, width, height, 0);
 		renderer = SDL.Video.Renderer.create(window, -1, SDL.Video.RendererFlags.ACCELERATED);
+		renderer.set_draw_blend_mode (SDL.Video.BlendMode.BLEND);
 		window.get_size(out width, out height);
 		this.width = width;
 		this.height = height;
