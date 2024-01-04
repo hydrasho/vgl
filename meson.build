@@ -9,6 +9,7 @@ dep_vala = [
   dependency('sdl2'),
   dependency('glib-2.0'),
   dependency('gobject-2.0'),
+  dependency('gee-0.8'),
   meson.get_compiler('c').find_library('m')
 ]
 
