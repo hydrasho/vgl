@@ -1,6 +1,14 @@
 namespace BG {
-
+/**
+ * Represents a layer that can be drawn on and contains drawable objects or pixels/lines.
+ */
 public class Layer : Drawable {
+	/**
+     * Constructor for creating a layer with the specified width and height.
+     *
+     * @param width The width of the layer.
+     * @param height The height of the layer.
+     */
 	public Layer (int width, int height) {
 		surface = new SDL.Video.Surface.rgb(width, height, 32, 0, 0, 0, 255);	
 		renderer = SDL.Video.Renderer.create_from_surface(surface);
