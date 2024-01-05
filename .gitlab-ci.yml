@@ -3,7 +3,7 @@ image: "alpine:latest"
 pages:
   stage: deploy
   script:
-    - apk add vala libgee-dev graphviz graphviz-dev graphviz-libs
+    - apk add vala libgee-dev graphviz graphviz-dev graphviz-libs cairo cairo-dev
     - valadoc src/*.vala --pkg=sdl2 --pkg=gee-0.8 -o burger
     - mv burger public
     - ls -la

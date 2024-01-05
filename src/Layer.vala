@@ -44,6 +44,15 @@ public class Layer : Drawable {
 	}
 
 	/**
+	* Saves the Layer as a BMP image file with the specified filename.
+	*
+	* @param file The filename for the BMP image file to be saved.
+	*/
+	public void save(string file) {
+		surface.save_bmp(file);
+	}
+
+	/**
 	* Draws a line on the renderer from (x1, y1) to (x2, y2) with the specified color.
 	*
 	* @param x1 The x-coordinate of the starting point.
