@@ -5,19 +5,19 @@ namespace BG {
  *
  * How draw an Object in the layer ?
  * Example:
- {{{
-	var circle = new CircleShape(50, Color.Red);
-	var layer = new Layer(100, 100);
-	
-	circle.draw(layer.renderer);
-	layer.draw_line(0, 12, 100, 100);
-
-	while (win.is_open) {
-		win.clear();
-		win.draw(layer);
-		win.present();
-	}
- }}}
+ * {{{
+ *    var circle = new CircleShape(50, Color.Red);
+ *    var layer = new Layer(100, 100);
+ *    
+ *    circle.draw(layer.renderer);
+ *    layer.draw_line(0, 12, 100, 100);
+ *
+ *    while (win.is_open) {
+ *    	win.clear();
+ *    	win.draw(layer);
+ *    	win.present();
+ *    }
+ * }}}
  */
 public class Layer : Drawable {
 	/**

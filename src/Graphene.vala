@@ -3,7 +3,14 @@ namespace BG {
 errordomain ColumnsError {
 	TEXTURE_INVALID
 }
-
+/**
+ * Rectangle 
+ *
+ * @param x The x-coordinate of the rectangle.
+ * @param y The y-coordinate of the rectangle.
+ * @param w The width of the rectangle.
+ * @param h The height of the rectangle.
+ */
 public struct Rect : SDL.Video.Rect {
 }
 
