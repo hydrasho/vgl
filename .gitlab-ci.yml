@@ -3,7 +3,7 @@ image: "archlinux:latest"
 pages:
   stage: deploy
   script:
-    - pacman -Sy valadoc
+    - pacman -Sy valadoc --noconfirm
     - valadoc src/*.vala --pkg=sdl2 --pkg=gee-0.8 --package-name=burger -o public
     - echo "Pages deployment job at ${CI_PAGES_URL}"
   artifacts:
