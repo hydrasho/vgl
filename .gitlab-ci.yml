@@ -1,13 +1,10 @@
-image: "alpine:latest"
-    
+image: "archlinux:latest"
+
 pages:
   stage: deploy
   script:
-    - apk add vala vala-doc libgee-dev graphviz graphviz-dev graphviz-libs cairo cairo-dev libpng libpng-dev libpng-utils
-    - apk add graphviz-graphs cairo-tools
-    - valadoc src/*.vala --pkg=sdl2 --pkg=gee-0.8 -o burger
-    - mv burger public
-    - ls -la
+    - pacman -Sy valadoc
+    - valadoc src/*.vala --pkg=sdl2 --pkg=gee-0.8 --package-name=burger -o public
     - echo "Pages deployment job at ${CI_PAGES_URL}"
   artifacts:
     paths:
