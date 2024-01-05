@@ -49,7 +49,10 @@ public class Layer : Drawable {
 	* @param file The filename for the BMP image file to be saved.
 	*/
 	public void save(string file) {
-		surface.save_bmp(file);
+		// FIXIT 
+		SDL.RWops* e;
+		e = new SDL.RWops.from_file (file, "wb");
+		surface.save_bmp_rw (e, 1);
 	}
 
 	/**
