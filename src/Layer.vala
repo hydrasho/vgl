@@ -32,12 +32,16 @@ public class Layer : Drawable {
 		renderer = SDL.Video.Renderer.create_from_surface(surface);
 		renderer.set_draw_blend_mode (SDL.Video.BlendMode.BLEND);
 		texture = null;
+		ptr_renderer = 0;
 	}
 	
 	public override void draw(SDL.Video.Renderer renderer_window, Vector2i? pos = null) {
 		if (pos == null)
 			pos = {x, y};
-		texture = SDL.Video.Texture.create_from_surface(renderer_window, surface);
+		if (ptr_renderer != (long)&renderer) {
+			texture = SDL.Video.Texture.create_from_surface(renderer_window, surface);
+			ptr_renderer = (long)&renderer;
+		}
 		renderer_window.copy(texture, rect, {pos.x, pos.y, rect.w, rect.h});
 	}
 
@@ -152,6 +156,7 @@ public class Layer : Drawable {
 		renderer.fill_rects(rects);
 	}
 	
+	private long ptr_renderer;
 	public SDL.Video.Renderer renderer;
 	private SDL.Video.Surface surface;
 	private SDL.Video.Texture texture;
