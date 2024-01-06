@@ -5,6 +5,16 @@ namespace BG {
  * Represents an abstract class for objects that can be drawn.
  */
 public abstract class Drawable {
+	protected Drawable(int width, int height) {
+		this.width = width;
+		this.height = height;
+		visible = true;
+		position = {0, 0};
+		rect = {0, 0, width, height};
+		angle = 0.0;
+		scale = {1.0f, 1.0f};
+	}
+
 	 /**
      * Abstract method that must be implemented by subclasses to define how the object is drawn on the renderer.
      *
@@ -23,6 +33,14 @@ public abstract class Drawable {
 		this.x += x;
 		this.y += y;
 	}
+
+
+
+	public void rescale(Vector2f scale) {
+		this.scale = {scale.x + scale.x, scale.y + scale.y};
+	}
+
+	public Vector2f scale {get;set;}
 
 	/**
      * Gets or sets the visibility of the drawable object (default is true).
@@ -53,11 +71,14 @@ public abstract class Drawable {
 	/**
 	 * the width of your entity
 	 */
-	public uint width;
+	public int width;
 	/**
 	 * the height of your entity
 	 */
-	public uint height;
+	public int height;
+	public Vector2i origin;
+	protected Rect rect;
+	public double angle {get;set;}
 }
 
 }

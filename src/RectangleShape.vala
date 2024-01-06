@@ -13,11 +13,11 @@ public class RectangleShape : Shape {
 	public RectangleShape(int width = 50, int height = 50, Color color = Color.White) {
 		base(width, height, color);
 	}
-	
-	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {
+
+	protected override void paint(SDL.Video.Renderer renderer, Vector2i? pos = null){
+		print("Coucou\n");
 		if (pos == null)
 			pos = position;
-		base.draw(renderer);
 		renderer.fill_rect ({pos.x, pos.y, width, height});
 	}
 }

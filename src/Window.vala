@@ -61,7 +61,7 @@ public class Window {
 			fps_timer.reset();
 		}
 		else {
-			Thread.usleep(1000);
+			Thread.usleep(2000);
 		}
 	}
 

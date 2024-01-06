@@ -68,6 +68,17 @@ public struct Vector2i {
 }
 
 /**
+ * Represents a 2D float vector.
+ *
+ * @param x The X-coordinate of the vector.
+ * @param y The Y-coordinate of the vector.
+ */
+public struct Vector2f {
+	double x;
+	double y;
+}
+
+/**
  * Represents a 3D integer vector.
  *
  * @param x The X-coordinate of the vector.

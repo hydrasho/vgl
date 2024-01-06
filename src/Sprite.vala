@@ -19,24 +19,24 @@ public class Sprite : Drawable {
      * @param texture The texture to be associated with the sprite.
      */
 	public Sprite (Texture texture) {
+		base(texture.width, texture.height);
 		frames = new Gee.ArrayList<Frame>();
 		this.texture = texture;
-		rect = {0, 0, texture.width, texture.height};
-		width = texture.width;
-		height = texture.height;
-		visible = true;
 	}
 
 	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {
+		uint round(uint a, double b) {
+			return (uint)Math.round(a * b);
+		}
 		if (pos == null)
 			pos = {x, y};
 		unowned SDL.Video.Texture tex = texture.get_sdl_texture(renderer);
 		if (frames.size > 0){
 			var r = frames[index_frames].rect;
-			renderer.copy(tex, r, {pos.x, pos.y, r.w, r.h});
+			renderer.copyex(tex, r, {pos.x, pos.y, round(r.w, scale.x), round(r.h, scale.y)}, angle, {0, 0}, SDL.Video.RendererFlip.NONE);
 		}
 		else
-			renderer.copy(tex, rect, {pos.x, pos.y, rect.w, rect.h});
+			renderer.copyex(tex, rect, {pos.x, pos.y, round(rect.w, scale.x), round(rect.h, scale.y)}, angle, {0, 0}, SDL.Video.RendererFlip.NONE);
 
 	}
 
@@ -107,7 +107,6 @@ public class Sprite : Drawable {
 		}
 	}
 
-	private Rect rect; 
 	private int index_frames {get; set;default = 0;}
 	public Gee.ArrayList<Frame> frames;
 	public Texture texture;

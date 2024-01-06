@@ -27,13 +27,11 @@ public class Layer : Drawable {
      * @param height The height of the layer.
      */
 	public Layer (int width, int height) {
-		surface = new SDL.Video.Surface.rgb(width, height, 32, 0, 0, 0, 255);	
+		base(width, height);
+		surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff, 0xff00, 0xff0000, (uint32)0xff000000);
 		renderer = SDL.Video.Renderer.create_from_surface(surface);
 		renderer.set_draw_blend_mode (SDL.Video.BlendMode.BLEND);
 		texture = null;
-		this.rect = {0, 0, width, height};
-		this.width = width;
-		this.height = height;
 	}
 	
 	public override void draw(SDL.Video.Renderer renderer_window, Vector2i? pos = null) {
@@ -154,7 +152,6 @@ public class Layer : Drawable {
 		renderer.fill_rects(rects);
 	}
 	
-	private Rect rect; 
 	public SDL.Video.Renderer renderer;
 	private SDL.Video.Surface surface;
 	private SDL.Video.Texture texture;

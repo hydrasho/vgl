@@ -10,17 +10,16 @@ public class CircleShape : Shape {
      * @param color The color of the circle (default is Color.White).
      */
 	public CircleShape(int radius, Color color = Color.White) {
-		base(radius, radius, color);
+		base(radius * 2, radius * 2, color);
 		this.radius = radius;
 	}
-	
-	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {
-		base.draw(renderer);
+
+	protected override void paint(SDL.Video.Renderer renderer, Vector2i? pos = null){
 		if (pos == null)
 			pos = position;
 
-		int CX = pos.x;
-		int CY = pos.y;
+		int CX = pos.x + (int)width / 2;
+		int CY = pos.y + (int)height / 2;
 
 		int r2 = radius * radius;
 		for (int y = -radius; y <= 0; ++y)
@@ -30,7 +29,8 @@ public class CircleShape : Shape {
 			{
 				if (x * x + y2 <= r2) {
 					renderer.draw_line( CX + x, CY + y, CX - x, CY + y);
-					renderer.draw_line( CX + x, CY - y, CX - x, CY - y);
+					if (y != 0)
+						renderer.draw_line( CX + x, CY - y, CX - x, CY - y);
 					break;
 				}
 			}
