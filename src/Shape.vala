@@ -24,7 +24,7 @@ public abstract class Shape : Drawable {
 			ptr_renderer = (long)&renderer;
 		}
 		_texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
-		renderer.copyex (_texture, rect, {pos.x, pos.y, width, height}, angle, {origin.x, origin.y}, SDL.Video.RendererFlip.NONE);
+		renderer.copyex (_texture, rect, {pos.x, pos.y, width, height}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
 
 	}
 

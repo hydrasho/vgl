@@ -36,7 +36,7 @@ public class Sprite : Drawable {
 			renderer.copyex(tex, r, {pos.x, pos.y, round(r.w, scale.x), round(r.h, scale.y)}, angle, {0, 0}, SDL.Video.RendererFlip.NONE);
 		}
 		else
-			renderer.copyex(tex, rect, {pos.x, pos.y, round(rect.w, scale.x), round(rect.h, scale.y)}, angle, {0, 0}, SDL.Video.RendererFlip.NONE);
+			renderer.copyex(tex, rect, {pos.x, pos.y, round(rect.w, scale.x), round(rect.h, scale.y)}, angle, {0, 0}, (SDL.Video.RendererFlip)flip);
 
 	}
 

@@ -1,11 +1,19 @@
 
 namespace BG {
 
+public enum Flip {
+	NONE = SDL.Video.RendererFlip.NONE,
+	VERTICAL = SDL.Video.RendererFlip.VERTICAL,
+	HORIZONTAL = SDL.Video.RendererFlip.HORIZONTAL,
+}
+
+
 /**
  * Represents an abstract class for objects that can be drawn.
  */
 public abstract class Drawable {
 	protected Drawable(int width, int height) {
+		flip = NONE;
 		this.width = width;
 		this.height = height;
 		visible = true;
@@ -75,6 +83,7 @@ public abstract class Drawable {
 	/**
 	 * the height of your entity
 	 */
+	public Flip flip;
 	public int height;
 	public Vector2i origin;
 	protected Rect rect;
