@@ -4,7 +4,7 @@ pages:
   stage: deploy
   script:
     - pacman -Sy valadoc libgee --noconfirm
-    - valadoc src/*.vala --pkg=sdl2 --pkg=gee-0.8 --deps --use-svg-images --package-name=burger -o public
+    - valadoc src/*.vala --pkg=sdl2 --pkg=cairo --pkg=gee-0.8 --deps --use-svg-images --package-name=burger -o public
     - echo "Pages deployment job at ${CI_PAGES_URL}"
   artifacts:
     paths:

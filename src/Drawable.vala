@@ -91,7 +91,7 @@ public abstract class Drawable : Object{
 		get{
 			if (_rect == null)
 				return {0, 0, width, height};
-			return _rect;
+			return (!)_rect;
 		}
 		set{
 			_rect = value;

@@ -28,15 +28,14 @@ public class Sprite : Drawable {
 		uint round(uint a, double b) {
 			return (uint)Math.round(a * b);
 		}
-		if (pos == null)
-			pos = {x, y};
+		Vector2i p = pos ?? position;
 		unowned SDL.Video.Texture tex = texture.get_sdl_texture(renderer);
 		if (frames.size > 0){
 			var r = frames[index_frames].rect;
-			renderer.copyex(tex, r, {pos.x, pos.y, round(r.w, scale.x), round(r.h, scale.y)}, angle, {0, 0}, SDL.Video.RendererFlip.NONE);
+			renderer.copyex(tex, r, {p.x, p.y, round(r.w, scale.x), round(r.h, scale.y)}, angle, {0, 0}, SDL.Video.RendererFlip.NONE);
 		}
 		else
-			renderer.copyex(tex, rect, {pos.x, pos.y, round(rect.w, scale.x), round(rect.h, scale.y)}, angle, {0, 0}, (SDL.Video.RendererFlip)flip);
+			renderer.copyex(tex, rect, {p.x, p.y, round(rect.w, scale.x), round(rect.h, scale.y)}, angle, {0, 0}, (SDL.Video.RendererFlip)flip);
 
 	}
 

@@ -49,13 +49,12 @@ public class Layer : Drawable {
 	}
 
 	public override void draw(SDL.Video.Renderer renderer_window, Vector2i? pos = null) {
-		if (pos == null)
-			pos = {x, y};
+		Vector2i p = pos ?? position;
 		if (ptr_renderer != (long)&renderer) {
-			texture = SDL.Video.Texture.create_from_surface(renderer_window, surface);
+			texture = (!)SDL.Video.Texture.create_from_surface(renderer_window, surface);
 			ptr_renderer = (long)&renderer;
 		}
-		renderer_window.copyex(texture, rect, {pos.x, pos.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
+		renderer_window.copyex(texture, rect, {p.x, p.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
 	}
 
 	private long ptr_renderer;
