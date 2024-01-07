@@ -10,6 +10,7 @@ dep_vala = [
   dependency('glib-2.0'),
   dependency('gobject-2.0'),
   dependency('gee-0.8'),
+  dependency('cairo-gobject'),
   meson.get_compiler('c').find_library('m')
 ]
 
@@ -28,7 +29,7 @@ pkg.generate(
     version : '3.0',
     description : 'burger is a lib graphics for vala and C',
     libraries : burger_lib,
-    requires : ['sdl2', 'glib-2.0', 'gobject-2.0'],
+    requires : ['sdl2', 'glib-2.0', 'gobject-2.0', 'gee-0.8', 'cairo-gobject'],
 )
 
 libburger_dep = declare_dependency(link_with : burger_lib,  dependencies: dep_vala, include_directories : include_directories('.'))

@@ -10,33 +10,36 @@ public class CircleShape : Shape {
      * @param color The color of the circle (default is Color.White).
      */
 	public CircleShape(int radius, Color color = Color.White) {
-		base(radius * 2, radius * 2, color);
-		this.radius = radius;
-	}
-
-	protected override void paint(SDL.Video.Renderer renderer, Vector2i? pos = null){
-		if (pos == null)
-			pos = position;
-
-		int CX = pos.x + (int)width / 2;
-		int CY = pos.y + (int)height / 2;
-
-		int r2 = radius * radius;
-		for (int y = -radius; y <= 0; ++y)
-		{
-			int y2 = y * y;
-			for (int x = -radius; x <= 0; ++x)
-			{
-				if (x * x + y2 <= r2) {
-					renderer.draw_line( CX + x, CY + y, CX - x, CY + y);
-					if (y != 0)
-						renderer.draw_line( CX + x, CY - y, CX - x, CY - y);
-					break;
-				}
-			}
-		}
+		base(radius * 2, radius * 2);
+		_color = color;
+		_radius = radius;
 	}
 	
-	private int radius;
+	public override void draw_func(Cairo.Context ctx, int width, int height) {
+		ColorDouble c = ColorDouble.parse(_color);
+		base.draw_func(ctx, width, height);
+
+		ctx.set_source_rgba(c.r, c.g, c.b, c.a);
+		ctx.arc(width/2.0 , height / 2.0, radius, 0, 2.0 * Math.PI);
+		ctx.fill();
+	} 
+
+	
+	private int _radius;
+	public int radius {
+		get {
+			return _radius;
+		}
+		set {
+			_radius = value;
+			base.redraw(value *2, value *2);
+		}
+	}
+	private Color _color;
+	public Color color {get {return _color;}
+		set {
+			_color = value;
+			base.redraw();
+		}}
 }
 }

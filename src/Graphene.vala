@@ -56,6 +56,21 @@ public struct Color {
 	uint8 alpha;
 }
 
+public struct ColorDouble {
+	public static ColorDouble parse(Color color) {
+		double r = color.red / 255.0;
+		double g = color.green / 255.0;
+		double b = color.blue / 255.0;
+		double a = color.alpha / 255.0;
+		return ({r,g,b,a});
+		
+	} 
+	double r;
+	double g;
+	double b;
+	double a;
+}
+
 /**
  * Represents a 2D integer vector.
  *

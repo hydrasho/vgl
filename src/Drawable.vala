@@ -11,14 +11,14 @@ public enum Flip {
 /**
  * Represents an abstract class for objects that can be drawn.
  */
-public abstract class Drawable {
+public abstract class Drawable : Object{
 	protected Drawable(int width, int height) {
 		flip = NONE;
 		this.width = width;
 		this.height = height;
 		visible = true;
 		position = {0, 0};
-		rect = {0, 0, width, height};
+		_rect = null;
 		angle = 0.0;
 		scale = {1.0f, 1.0f};
 	}
@@ -86,7 +86,19 @@ public abstract class Drawable {
 	public Flip flip;
 	public int height;
 	public Vector2i origin;
-	protected Rect rect;
+
+	protected Rect rect {
+		get{
+			if (_rect == null)
+				return {0, 0, width, height};
+			return _rect;
+		}
+		set{
+			_rect = value;
+		}
+	}
+	private Rect? _rect;
+
 	public double angle {get;set;}
 }
 

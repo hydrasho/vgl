@@ -1,39 +1,66 @@
 namespace BG {
 
- /**
- * Abstract class for all Shape class 
- */
 public abstract class Shape : Drawable {
-	protected Shape(int width = 50, int height = 50, Color color = Color.White) {
+	protected Shape(int width, int height) {
 		base (width, height);
-		this.color = color;
-		_surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff, 0xff00, 0xff0000, (uint32)0xff000000);
-		_renderer = SDL.Video.Renderer.create_from_surface(_surface);
-		_renderer.set_draw_blend_mode (SDL.Video.BlendMode.BLEND);
+		init_surface(width, height);
+	}
+
+	private void init_surface(int width, int height) {
+		_surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff0000, 0xff00, 0xff, (uint32)0xff000000);
+		cairo_surface = new Cairo.ImageSurface.for_data((uchar[])_surface.pixels, Cairo.Format.ARGB32, width, height, width * 4);
+		ctx = new Cairo.Context(cairo_surface);
+		this.width = width;
+		this.height = height;
+
+	}
+
+	/**
+	* the drawing functionality using Cairo graphics.
+	*
+	* @param ctx The Cairo context for drawing operations.
+	* @param width The width of the drawing area.
+	* @param height The height of the drawing area.
+	*/
+	public virtual signal void draw_func(Cairo.Context ctx, int width, int height) {
+		ctx.set_operator(Cairo.Operator.CLEAR);
+		ctx.paint();
+		ctx.set_operator(Cairo.Operator.OVER);
+	}
+
+	/**
+	* Forces the redrawing of the graphics using Cairo.
+	* If new width or height is provided, it initializes the drawing surface with the new dimensions.
+	*
+	* @param width The new width of the drawing area (null to keep the current width).
+	* @param height The new height of the drawing area (null to keep the current height).
+	*/
+	public void redraw(int? width = null, int? height = null) {
+		if (width != null || height != null) {
+			init_surface(width ?? this.width, height ?? this.height);
+		}
 		ptr_renderer = 0;
 	}
 
-	public override void draw (SDL.Video.Renderer renderer, Vector2i? pos = null) {
+	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null)
+	{
 		if (pos == null)
 			pos = {x, y};
 
 		if (ptr_renderer != (long)&renderer) {
-			_renderer.set_draw_color (color.red, color.green, color.blue, color.alpha);
-			paint(_renderer, {0, 0});
+			draw_func(ctx, width, height);
 			_texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
 			ptr_renderer = (long)&renderer;
 		}
-		_texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
-		renderer.copyex (_texture, rect, {pos.x, pos.y, width, height}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
 
+		renderer.copyex (_texture, rect,{pos.x, pos.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
 	}
 
-	protected abstract void paint(SDL.Video.Renderer renderer, Vector2i? pos = null);
-
-	public Color color;
-	protected long ptr_renderer;
-	private SDL.Video.Texture	_texture;
-	private SDL.Video.Surface	_surface;
-	private SDL.Video.Renderer	_renderer;
+	private long						ptr_renderer;
+	protected Cairo.Context				ctx;
+	protected Cairo.ImageSurface		cairo_surface;
+	protected SDL.Video.Surface			_surface;
+	private SDL.Video.Texture			_texture;
 }
+
 }
