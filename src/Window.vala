@@ -33,6 +33,57 @@ public class Window {
 		this.height = height;
 		fps_timer = new Timer();
 	}
+	/**
+	* Sets the bordered property of the window, controlling whether it has a border.
+	*
+	* @param border A boolean indicating whether the window should have a border.
+	*/
+	public void set_bordered(bool border) {
+		window.set_bordered(border);
+	}
+
+	/**
+	* Maximizes the window to occupy the full screen.
+	*/
+	public void maximize() {
+		window.maximize();
+	}
+
+	/**
+	* Minimizes the window, reducing it to an icon or a button on the taskbar.
+	*/
+	public void minimize() {
+		window.minimize();
+	}
+
+	/**
+	* Resizes the window to the specified width and height.
+	*
+	* @param width The new width of the window.
+	* @param height The new height of the window.
+	*/
+	public void resize(int width, int height) {
+		window.set_size(width, height);
+	}
+
+	/**
+	* Sets the position of the window to the specified coordinates.
+	*
+	* @param x The x-coordinate of the new position.
+	* @param y The y-coordinate of the new position.
+	*/
+	public void set_position(int x, int y) {
+		window.set_position(x, y);
+	}
+
+	/**
+	* Sets the resizable property of the window, determining whether it can be resized by the user.
+	*
+	* @param resizable A boolean indicating whether the window can be resized.
+	*/
+	public void set_resizable(bool resizable) {
+		window.set_resizable(resizable);
+	}
 
 	/**
      * Closes the window.
@@ -86,6 +137,29 @@ public class Window {
 	public int height {get; private set;}
 	public SDL.Video.Renderer renderer;
 	
+	/**
+	* Gets or sets the visibility state of the window.
+	* When getting, returns whether the window is currently visible.
+	* When setting, updates the visibility state and shows or hides the window accordingly.
+	*
+	* @return A boolean indicating whether the window is currently visible.
+	*
+	* @param value A boolean representing the desired visibility state.
+	*              If true, the window will be shown; if false, the window will be hidden.
+	*/
+	public bool visible {
+		get {
+			return _visible;
+		}
+		set {
+			_visible = value;
+			if (_visible == true)
+				window.show();
+			else
+				window.hide();
+		}
+	}
+	private bool _visible = true;
 
 	private Timer fps_timer;
 	private SDL.Video.Window window;
