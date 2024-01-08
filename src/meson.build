@@ -9,6 +9,7 @@ src_vala = [
   files('Drawable.vala'),
   files('CircleShape.vala'),
   files('CairoShape.vala'),
+  files('Text.vala'),
   files('Layer.vala'),
   files('RectangleShape.vala')
 ]

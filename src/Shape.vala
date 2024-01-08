@@ -1,5 +1,8 @@
 namespace BG {
 
+/**
+* Abstract class for all Shape class
+*/
 public abstract class Shape : Drawable {
 	protected Shape(int width, int height) {
 		base (width, height);
@@ -7,12 +10,13 @@ public abstract class Shape : Drawable {
 	}
 
 	private void init_surface(int width, int height) {
-		_surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff0000, 0xff00, 0xff, (uint32)0xff000000);
+		var? surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff0000, 0xff00, 0xff, (uint32)0xff000000);
+		assert(surface != null);
+		_surface = (!)(owned)surface;
 		cairo_surface = new Cairo.ImageSurface.for_data((uchar[])_surface.pixels, Cairo.Format.ARGB32, width, height, width * 4);
 		ctx = new Cairo.Context(cairo_surface);
 		this.width = width;
 		this.height = height;
-
 	}
 
 	/**
@@ -48,7 +52,9 @@ public abstract class Shape : Drawable {
 
 		if (ptr_renderer != (long)&renderer) {
 			draw_func(ctx, width, height);
-			_texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
+			var? texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
+			assert(texture != null);
+			_texture = (!)(owned)texture;
 			ptr_renderer = (long)&renderer;
 		}
 

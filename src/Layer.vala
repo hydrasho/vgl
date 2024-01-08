@@ -29,10 +29,15 @@ public class Layer : Drawable {
      */
 	public Layer (int width, int height) {
 		base(width, height);
-		surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff, 0xff00, 0xff0000, (uint32)0xff000000);
-		renderer = SDL.Video.Renderer.create_from_surface(surface);
-		renderer.set_draw_blend_mode (SDL.Video.BlendMode.BLEND);
-		ptr_renderer = 0;
+		var? surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff, 0xff00, 0xff0000, (uint32)0xff000000);
+		assert(surface != null);
+		_surface = (!)(owned)surface;
+		
+		var? renderer = SDL.Video.Renderer.create_from_surface(_surface);
+		assert(renderer != null);
+		_renderer = (!)(owned)renderer;
+		_renderer.set_draw_blend_mode (SDL.Video.BlendMode.BLEND);
+		_ptr_renderer = 0;
 	}
 
 	/**
@@ -44,23 +49,23 @@ public class Layer : Drawable {
 	public void paint(Drawable drawable, Vector2i? pos = null) {
 		if (pos == null)
 			pos = drawable.position;
-		drawable.draw(this.renderer, pos);
-		ptr_renderer = 0;
+		drawable.draw(_renderer, pos);
+		_ptr_renderer = 0;
 	}
 
 	public override void draw(SDL.Video.Renderer renderer_window, Vector2i? pos = null) {
 		Vector2i p = pos ?? position;
-		if (ptr_renderer != (long)&renderer) {
-			texture = (!)SDL.Video.Texture.create_from_surface(renderer_window, surface);
-			ptr_renderer = (long)&renderer;
+		if (_ptr_renderer != (long)&_renderer) {
+			_texture = (!)SDL.Video.Texture.create_from_surface(renderer_window, _surface);
+			_ptr_renderer = (long)&_renderer;
 		}
-		renderer_window.copyex(texture, rect, {p.x, p.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
+		renderer_window.copyex(_texture, rect, {p.x, p.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
 	}
 
-	private long ptr_renderer;
-	private SDL.Video.Renderer renderer;
-	private SDL.Video.Surface surface;
-	private SDL.Video.Texture texture;
+	private long				_ptr_renderer;
+	private SDL.Video.Renderer	_renderer;
+	private SDL.Video.Surface	_surface;
+	private SDL.Video.Texture	_texture;
 }
 
 }
