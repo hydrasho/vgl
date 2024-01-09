@@ -17,6 +17,7 @@ public abstract class Shape : Drawable {
 		ctx = new Cairo.Context(cairo_surface);
 		this.width = width;
 		this.height = height;
+		ptr_renderer = 0;
 	}
 
 	/**
@@ -50,18 +51,20 @@ public abstract class Shape : Drawable {
 	{
 		Vector2i p = pos ?? position;
 
-		if (ptr_renderer != (long)&renderer) {
+		ptr_renderer = (size_t)&renderer;
+		draw_func(ctx, width, height);
+		if (ptr_renderer != (size_t)&renderer) {
 			draw_func(ctx, width, height);
-			var? texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
-			assert(texture != null);
-			_texture = (!)(owned)texture;
-			ptr_renderer = (long)&renderer;
+			ptr_renderer = (size_t)&renderer;
 		}
+		var? texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
+		assert(texture != null);
+		_texture = (!)(owned)texture;
 
 		renderer.copyex (_texture, rect,{p.x, p.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
 	}
 
-	private long						ptr_renderer;
+	private size_t						ptr_renderer;
 	protected Cairo.Context				ctx;
 	protected Cairo.ImageSurface		cairo_surface;
 	protected SDL.Video.Surface			_surface;

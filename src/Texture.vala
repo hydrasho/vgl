@@ -25,10 +25,10 @@ public class Texture {
      */
 	public unowned SDL.Video.Texture get_sdl_texture (SDL.Video.Renderer renderer) {
 		if (_ptr_renderer != (long)&renderer) {
+			_ptr_renderer = (long)&renderer;
 			var? texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
 			assert (texture != null);
 			_texture = (!)(owned)texture;
-			_ptr_renderer = (long)&renderer;
 		}
 		return (!)_texture;
 	}
