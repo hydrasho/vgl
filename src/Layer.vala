@@ -53,6 +53,15 @@ public class Layer : Drawable {
 		_ptr_renderer = 0;
 	}
 
+	/**
+     * Clears the layer by filling it with a color.
+	 * default color is white
+     */
+	public void clear(Color color = Color.White) {
+		_renderer.set_draw_color(color.red, color.green, color.blue, color.alpha);
+		_renderer.fill_rect ({0, 0, width, height});
+	}
+
 	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {
 		Vector2i p = pos ?? position;
 		if (_ptr_renderer != (long)&renderer) {
