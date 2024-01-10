@@ -1,7 +1,23 @@
 namespace BG {
 
-
+/**
+ * Represents a text element.
+ *
+ *
+ * {{{
+ * Text text = new Text ("My text", 12);
+ *
+ * win.draw (text);
+ * }}}
+ */
 public class Text : Shape {
+	/**
+     * Constructor for creating a Text element with specified label, size, and font.
+     *
+     * @param label The text content of the Text element (default is an empty string).
+     * @param size The font size of the Text element (default is 24).
+     * @param font The font family of the Text element (default is "Arial").
+     */
 	public Text(string label = "", int size = 24, string font = "Arial"){
 		base(1, 1);
 		position = {0, 0};
@@ -48,18 +64,18 @@ public class Text : Shape {
 			ctx.show_text (sp[i]);
 		}
 		ctx.stroke();
-		print("Coucou je me suis dessinne\n");
 	}
 
 	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null)
 	{
 		base.draw(renderer, pos);
 	}
-	
+
 	public string	label {get {return _label;} set{_label = value; redraw();}}
 	public string	font {get {return _font;} set{_font = value; redraw();}}
 	public int		size {get {return _size;} set{_size = value; redraw();}}
 	public Color	color{get {return _color;} set{_color= value; redraw();}}
+
 	private string	_label;
 	private Color	_color;
 	private int		_size;
