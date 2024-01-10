@@ -24,12 +24,12 @@ public class Texture {
      * @return The SDL texture.
      */
 	public unowned SDL.Video.Texture get_sdl_texture (SDL.Video.Renderer renderer) {
-		if (_ptr_renderer != (long)&renderer) {
-			_ptr_renderer = (long)&renderer;
+		// if (_ptr_renderer != (long)&renderer) {
+			// _ptr_renderer = (long)&renderer;
 			var? texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
 			assert (texture != null);
 			_texture = (!)(owned)texture;
-		}
+		// }
 		return (!)_texture;
 	}
 
@@ -58,7 +58,18 @@ public class Texture {
         get { return _surface.h; }
     }
 
-	private long				_ptr_renderer;
+	public Color color {
+		get {
+			return _color;
+		}
+		set {
+			_color = value;
+			this.colorize (_color.red, _color.green, _color.blue);
+		}
+	}
+	private Color _color = {255, 255, 255};
+
+	// private long				_ptr_renderer;
 	private SDL.Video.Surface	_surface;
 	private SDL.Video.Texture	_texture;
 }
