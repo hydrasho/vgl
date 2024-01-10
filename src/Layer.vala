@@ -29,6 +29,16 @@ public class Layer : Drawable {
      */
 	public Layer (int width, int height) {
 		base(width, height);
+		resize(width, height);
+		_ptr_renderer = 0;
+	}
+
+	public Layer.no_size() {
+		base(0, 0);
+	}
+
+	public new void resize(int width, int height) {
+		base.resize(width, height);
 		var? surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff, 0xff00, 0xff0000, (uint32)0xff000000);
 		assert(surface != null);
 		_surface = (!)(owned)surface;
@@ -37,7 +47,6 @@ public class Layer : Drawable {
 		assert(renderer != null);
 		_renderer = (!)(owned)renderer;
 		_renderer.set_draw_blend_mode (SDL.Video.BlendMode.BLEND);
-		_ptr_renderer = 0;
 	}
 
 	/**
@@ -55,11 +64,16 @@ public class Layer : Drawable {
 
 	/**
      * Clears the layer by filling it with a color.
-	 * default color is white
+	 * default color is full transparancy
      */
-	public void clear(Color color = Color.White) {
-		_renderer.set_draw_color(color.red, color.green, color.blue, color.alpha);
-		_renderer.fill_rect ({0, 0, width, height});
+	public void clear(Color? color = null) {
+		if (color == null)
+			_surface.fill_rect(null, 0);
+		else {
+			var c = (!)color;
+			_renderer.set_draw_color(c.red, c.green, c.blue, c.alpha);
+			_renderer.fill_rect ({0, 0, width, height});
+		}
 	}
 
 	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {

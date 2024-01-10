@@ -14,13 +14,17 @@ public enum Flip {
 public abstract class Drawable : Object{
 	protected Drawable(int width, int height) {
 		flip = NONE;
-		this.width = width;
-		this.height = height;
+		resize(width, height);
 		visible = true;
 		position = {0, 0};
 		_rect = null;
 		angle = 0.0;
 		scale = {1.0f, 1.0f};
+	}
+
+	protected void resize (int width, int height) {
+		this.width = width;
+		this.height = height;
 	}
 
 	 /**
