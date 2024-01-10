@@ -57,6 +57,13 @@ public class Sprite : Drawable {
 	}
 
 	/**
+	* Get the length of frames animation.
+	*/
+	public int len_frame () {
+		return frames.size;
+	}
+
+	/**
 	* Sets the current frame index for the animation.
 	*
 	* @param index The index of the frame to set as the current frame.
