@@ -30,7 +30,6 @@ public class Layer : Drawable {
 	public Layer (int width, int height) {
 		base(width, height);
 		resize(width, height);
-		_ptr_renderer = 0;
 	}
 
 	public Layer.no_size() {
@@ -39,14 +38,8 @@ public class Layer : Drawable {
 
 	public new void resize(int width, int height) {
 		base.resize(width, height);
-		var? surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff, 0xff00, 0xff0000, (uint32)0xff000000);
-		assert(surface != null);
-		_surface = (!)(owned)surface;
-		
-		var? renderer = SDL.Video.Renderer.create_from_surface(_surface);
-		assert(renderer != null);
-		_renderer = (!)(owned)renderer;
-		_renderer.set_draw_blend_mode (SDL.Video.BlendMode.BLEND);
+		_surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff, 0xff00, 0xff0000, (uint32)0xff000000);
+		_renderer = new RendererTexture(_surface);
 	}
 
 	/**
@@ -71,26 +64,20 @@ public class Layer : Drawable {
 			_surface.fill_rect(null, 0);
 		else {
 			var c = (!)color;
-			_renderer.set_draw_color(c.red, c.green, c.blue, c.alpha);
-			_renderer.fill_rect ({0, 0, width, height});
+			_renderer._renderer.set_draw_color(c.red, c.green, c.blue, c.alpha);
+			_renderer._renderer.fill_rect ({0, 0, width, height});
 		}
 	}
 
-	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {
+	public override void draw(RendererTexture renderer, Vector2i? pos = null) {
 		Vector2i p = pos ?? position;
-		if (_ptr_renderer != (long)&renderer) {
-			_ptr_renderer = (long)&renderer;
-			var? texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
-			assert(texture != null);
-			_texture = (!)(owned)texture;
-		}
-		renderer.copyex(_texture, rect, {p.x, p.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
+		var _texture = SDL.Video.Texture.create_from_surface(renderer._renderer, _surface);
+		renderer.copy(_texture, rect, {p.x, p.y, rect.w, rect.h}, angle, origin, flip);
 	}
 
 	private long				_ptr_renderer;
-	private SDL.Video.Renderer	_renderer;
+	private RendererTexture		_renderer;
 	private SDL.Video.Surface	_surface;
-	private SDL.Video.Texture	_texture;
 }
 
 }

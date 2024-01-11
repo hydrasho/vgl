@@ -1,9 +1,10 @@
 project('burger', ['c', 'vala'], version : '3.0', default_options: ['optimization=3'])
-add_project_arguments('--enable-experimental', '--enable-checking', '--enable-experimental-non-null', language: 'vala')
+add_project_arguments('--enable-experimental', '--enable-checking', language: 'vala')
 
 subdir('src')
 vapi_dir = meson.current_source_dir() / 'vapi'
 add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
+add_project_arguments('-g', language: 'vala')
 
 dep_vala = [
   dependency('sdl2'),

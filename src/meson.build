@@ -1,6 +1,7 @@
 
 src_vala = [
   files('Event.vala'),
+  files('Private.vala'),
   files('Graphene.vala'),
   files('Sprite.vala'),
   files('Texture.vala'),

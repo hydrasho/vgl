@@ -10,9 +10,7 @@ public abstract class Shape : Drawable {
 	}
 
 	private void init_surface(int width, int height) {
-		var? surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff0000, 0xff00, 0xff, (uint32)0xff000000);
-		assert(surface != null);
-		_surface = (!)(owned)surface;
+		_surface = new SDL.Video.Surface.rgb(width, height, 32, 0xff0000, 0xff00, 0xff, (uint32)0xff000000);
 		cairo_surface = new Cairo.ImageSurface.for_data((uchar[])_surface.pixels, Cairo.Format.ARGB32, width, height, width * 4);
 		ctx = new Cairo.Context(cairo_surface);
 		this.width = width;
@@ -47,7 +45,7 @@ public abstract class Shape : Drawable {
 		ptr_renderer = 0;
 	}
 
-	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null)
+	public override void draw(RendererTexture renderer, Vector2i? pos = null)
 	{
 		Vector2i p = pos ?? position;
 
@@ -57,11 +55,9 @@ public abstract class Shape : Drawable {
 			draw_func(ctx, width, height);
 			ptr_renderer = (size_t)&renderer;
 		}
-		var? texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
-		assert(texture != null);
-		_texture = (!)(owned)texture;
+		_texture = SDL.Video.Texture.create_from_surface(renderer._renderer, _surface);
 
-		renderer.copyex (_texture, rect,{p.x, p.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
+		renderer.copy(_texture, rect,{p.x, p.y, rect.w, rect.h}, angle, origin, flip);
 	}
 
 	private size_t						ptr_renderer;
