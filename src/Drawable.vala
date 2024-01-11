@@ -33,7 +33,7 @@ public abstract class Drawable : Object{
      * @param renderer The SDL renderer on which the object is drawn.
      * @param pos Optional parameter specifying the position at which to draw the object.
      */
-	public abstract void draw(SDL.Video.Renderer renderer, Vector2i? pos = null);
+	public abstract void draw(RendererTexture renderer, Vector2i? pos = null);
 
 	/**
      * Moves the object by the specified offset in the x and y directions.

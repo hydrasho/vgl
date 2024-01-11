@@ -47,7 +47,7 @@ public abstract class Shape : Drawable {
 		ptr_renderer = 0;
 	}
 
-	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null)
+	public override void draw(RendererTexture renderer, Vector2i? pos = null)
 	{
 		Vector2i p = pos ?? position;
 
@@ -57,11 +57,11 @@ public abstract class Shape : Drawable {
 			draw_func(ctx, width, height);
 			ptr_renderer = (size_t)&renderer;
 		}
-		var? texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
+		var? texture = SDL.Video.Texture.create_from_surface(renderer._renderer, _surface);
 		assert(texture != null);
 		_texture = (!)(owned)texture;
 
-		renderer.copyex (_texture, rect,{p.x, p.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
+		renderer.copy(_texture, rect,{p.x, p.y, rect.w, rect.h}, angle, origin, flip);
 	}
 
 	private size_t						ptr_renderer;
