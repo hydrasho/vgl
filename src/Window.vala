@@ -28,11 +28,9 @@ public class Window {
 		var? window = new SDL.Video.Window(title, 700, 200, width, height, 0);
 		assert(window != null);
 		_window = (!)(owned)window;
-		var? renderer = SDL.Video.Renderer.create(_window, -1, SDL.Video.RendererFlags.ACCELERATED);
-		assert(renderer != null);
-		_renderer = (!)(owned)renderer;
 
-		_renderer.set_draw_blend_mode (SDL.Video.BlendMode.BLEND);
+		target = new RenderTarget.from_window(_window, -1, SDL.Video.RendererFlags.ACCELERATED);
+
 		_window.get_size(out width, out height);
 		this.width = width;
 		this.height = height;
@@ -104,7 +102,7 @@ public class Window {
      */
 	public void draw(Drawable drawable, Vector2i? pos = null) {
 		if (drawable.visible) {
-			drawable.draw(_renderer, pos);
+			drawable.draw(target, pos);
 		}
 	}
 
@@ -113,7 +111,7 @@ public class Window {
      */
 	public void display() {
 		if (_fps_timer.elapsed() >= 1.0 / (double)fps) {
-			_renderer.present();
+			target.present();
 			_fps_timer.reset();
 		}
 		else {
@@ -126,8 +124,7 @@ public class Window {
 	 * default color is white
      */
 	public void clear(Color color = Color.White) {
-		_renderer.set_draw_color(color.red, color.green, color.blue, color.alpha);
-		_renderer.fill_rect ({0, 0, width, height});
+		target.clear ();
 	}
 
 	/**
@@ -164,7 +161,7 @@ public class Window {
 		}
 	}
 
-	private SDL.Video.Renderer	_renderer;
+	private RenderTarget		target;
 	private bool				_visible = true;
 	private Timer				_fps_timer;
 	private SDL.Video.Window	_window;

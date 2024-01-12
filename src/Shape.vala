@@ -42,12 +42,12 @@ public abstract class Shape : Drawable {
 		ctx.set_operator(Cairo.Operator.OVER);
 	}
 
-	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null)
+	public override void draw(RenderTarget renderer, Vector2i? pos = null)
 	{
 		Vector2i p = pos ?? position;
 
 		var texture = rendertexture.get_texture(renderer);
-		renderer.copyex (texture, rect, {p.x, p.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
+		renderer.copy(texture, rect, {p.x, p.y, rect.w, rect.h}, angle, origin, flip);
 	}
 
 	public RenderTexture	rendertexture;

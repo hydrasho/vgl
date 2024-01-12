@@ -11,6 +11,7 @@ src_vala = [
   files('CairoShape.vala'),
   files('Text.vala'),
   files('RenderTexture.vala'),
+  files('RenderTarget.vala'),
   files('Animation.vala'),
   files('Layer.vala'),
   files('RectangleShape.vala')

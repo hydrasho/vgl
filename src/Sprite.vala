@@ -24,7 +24,7 @@ public class Sprite : Drawable {
 		this.texture = texture;
 	}
 
-	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {
+	public override void draw(RenderTarget renderer, Vector2i? pos = null) {
 		uint round(uint a, double b) {
 			return (uint)Math.round(a * b);
 		}
@@ -32,10 +32,10 @@ public class Sprite : Drawable {
 		SDL.Video.Texture tex = texture.get_texture(renderer);
 		if (frames.size > 0){
 			var r = frames[index_frames].rect;
-			renderer.copyex(tex, r, {p.x, p.y, round(r.w, scale.x), round(r.h, scale.y)}, angle, {0, 0}, SDL.Video.RendererFlip.NONE);
+			renderer.copy(tex, r, {p.x, p.y, round(r.w, scale.x), round(r.h, scale.y)}, angle, origin, flip);
 		}
 		else
-			renderer.copyex(tex, rect, {p.x, p.y, round(rect.w, scale.x), round(rect.h, scale.y)}, angle, {0, 0}, (SDL.Video.RendererFlip)flip);
+			renderer.copy(tex, rect, {p.x, p.y, round(rect.w, scale.x), round(rect.h, scale.y)}, angle, origin, flip);
 
 	}
 

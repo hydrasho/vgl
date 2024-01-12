@@ -66,7 +66,7 @@ public class Text : Shape {
 		ctx.stroke();
 	}
 
-	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null)
+	public override void draw(RenderTarget renderer, Vector2i? pos = null)
 	{
 		base.draw(renderer, pos);
 	}

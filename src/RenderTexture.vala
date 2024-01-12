@@ -43,9 +43,9 @@ public class RenderTexture {
      * @return The SDL texture.
      */
 
-	public SDL.Video.Texture get_texture  (SDL.Video.Renderer renderer) {
+	public SDL.Video.Texture get_texture  (RenderTarget renderer) {
 		drawing_func (ctx, surface.w, surface.h);
-		var? t = SDL.Video.Texture.create_from_surface(renderer, surface);
+		var? t = SDL.Video.Texture.create_from_surface(renderer._renderer, surface);
 		assert(t != null);
 		var texture = (!)(owned)t;
 		return texture;
@@ -95,7 +95,7 @@ public class RenderTexture {
      */
 	public int h { get {return surface.h;} }
 
-	public SDL.Video.Surface		surface;
+	internal SDL.Video.Surface		surface;
 	private Cairo.ImageSurface?		_cairo_surface = null;
 	private Cairo.Context?			_ctx = null;
 }

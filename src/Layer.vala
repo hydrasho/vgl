@@ -39,11 +39,7 @@ public class Layer : Drawable {
 	public new void resize(int width, int height) {
 		base.resize(width, height);
 		surface = new RenderTexture.size(width, height);
-		
-		var? renderer = SDL.Video.Renderer.create_from_surface(surface.surface);
-		assert(renderer != null);
-		_renderer = (!)(owned)renderer;
-		_renderer.set_draw_blend_mode (SDL.Video.BlendMode.BLEND);
+		target = new RenderTarget.from_texture(surface);
 	}
 
 	/**
@@ -55,7 +51,7 @@ public class Layer : Drawable {
 	public void paint(Drawable drawable, Vector2i? pos = null) {
 		if (pos == null)
 			pos = drawable.position;
-		drawable.draw(_renderer, pos);
+		drawable.draw(target, pos);
 	}
 
 	/**
@@ -65,21 +61,18 @@ public class Layer : Drawable {
 	public void clear(Color? color = null) {
 		if (color == null)
 			surface.clear();
-		else {
-			var c = (!)color;
-			_renderer.set_draw_color(c.red, c.green, c.blue, c.alpha);
-			_renderer.fill_rect ({0, 0, width, height});
-		}
+		else
+			target.clear((!)color);
 	}
 
-	public override void draw(SDL.Video.Renderer renderer, Vector2i? pos = null) {
+	public override void draw(RenderTarget renderer, Vector2i? pos = null) {
 		Vector2i p = pos ?? position;
 		var texture = surface.get_texture(renderer);
-		renderer.copyex(texture, rect, {p.x, p.y, rect.w, rect.h}, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
+		renderer.copy(texture, rect, {p.x, p.y, rect.w, rect.h}, angle, origin, flip);
 	}
 
-	private RenderTexture		surface;
-	private SDL.Video.Renderer	_renderer;
+	private RenderTexture	surface;
+	private RenderTarget	target;
 }
 
 }
