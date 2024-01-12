@@ -10,11 +10,8 @@ public class Texture {
      * @param filename The filename of the image file to load.
      * @throws Error Throws an error if the texture cannot be loaded.
      */
-	public Texture(string filename) throws Error {
-		var? surface = new SDL.Video.Surface.from_bmp(filename);
-		if (surface == null)
-			throw new ColumnsError.TEXTURE_INVALID(@"Can't load $filename");
-		_surface = (!)(owned) surface;
+	public Texture(string filename) {
+		rendertexture = new RenderTexture(filename);
 	}
 	
 	/**
@@ -23,14 +20,8 @@ public class Texture {
      * @param renderer The SDL renderer to create the texture on.
      * @return The SDL texture.
      */
-	public unowned SDL.Video.Texture get_sdl_texture (SDL.Video.Renderer renderer) {
-		// if (_ptr_renderer != (long)&renderer) {
-			// _ptr_renderer = (long)&renderer;
-			var? texture = SDL.Video.Texture.create_from_surface(renderer, _surface);
-			assert (texture != null);
-			_texture = (!)(owned)texture;
-		// }
-		return (!)_texture;
+	public SDL.Video.Texture get_sdl_texture (SDL.Video.Renderer renderer) {
+		return rendertexture.get_texture (renderer);
 	}
 
 	/**
@@ -41,21 +32,21 @@ public class Texture {
      * @param b The blue component of the color.
      */
 	public void colorize(uint8 r, uint8 g, uint8 b) {
-		_surface.set_colormod (r, g, b);
+		rendertexture.colorize(r, g, b);
 	}
 
 	/**
      * Gets the width of the texture.
      */
     public int width {
-        get { return _surface.w; }
+        get { return rendertexture.w; }
     }
 
     /**
      * Gets the height of the texture.
      */
     public int height {
-        get { return _surface.h; }
+        get { return rendertexture.h; }
     }
 
 	public Color color {
@@ -70,7 +61,6 @@ public class Texture {
 	private Color _color = {255, 255, 255};
 
 	// private long				_ptr_renderer;
-	private SDL.Video.Surface	_surface;
-	private SDL.Video.Texture	_texture;
+	private RenderTexture		rendertexture;
 }
 }
