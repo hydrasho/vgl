@@ -1,6 +1,6 @@
 namespace BG {
 
-errordomain ColumnsError {
+errordomain BurgerError {
 	TEXTURE_INVALID
 }
 /**

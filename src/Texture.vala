@@ -10,7 +10,7 @@ public class Texture : RenderTexture {
      * @param filename The filename of the image file to load.
      * @throws Error Throws an error if the texture cannot be loaded.
      */
-	public Texture(string filename) {
+	public Texture(string filename) throws Error {
 		base (filename);
 	}
 	

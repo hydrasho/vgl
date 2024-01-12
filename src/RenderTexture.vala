@@ -11,13 +11,12 @@ public class RenderTexture {
      * @param file The filename of the image file to load into the RenderTexture.
      *             Supports BMP format for loading images.
      */
-	public RenderTexture (string file) {
-		SDL.Video.Surface? res;
+	public RenderTexture (string file) throws Error{
+		SDL.Video.Surface? res = null;
 		if (file.has_suffix (".bmp"))
 			res = new SDL.Video.Surface.from_bmp (file);
-		else
-			error ("Can't load %s", file);
-		assert (res != null);
+		if (res == null)
+			throw new BurgerError.TEXTURE_INVALID (@"Can't load $file");
 		surface = (!)(owned)res;
 	}
 

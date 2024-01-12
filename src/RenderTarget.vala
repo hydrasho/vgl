@@ -30,6 +30,6 @@ namespace BG {
 		
 		private int w;
 		private int h;
-		public SDL.Video.Renderer	_renderer;
+		internal SDL.Video.Renderer	_renderer;
 	}
 }

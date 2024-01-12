@@ -2137,7 +2137,7 @@ namespace SDL {
 
 
 
-		[CCode (cname = "SDL_Palette", cheader_filename = "SDL2/SDL_pixels.h", free_function = "SDL_FreePalette", ref_function = "SDL_Palette_up", unref_function = "SDL_FreePalette")]
+		[CCode (cname = "SDL_Palette", cheader_filename = "SDL2/SDL_pixels.h", free_function = "SDL_FreePalette")]
 		public class Palette {
 			[CCode (array_length_cname = "ncolors", array_length_type = "int")]
 			public Video.Color[] colors;
@@ -2155,7 +2155,7 @@ namespace SDL {
 			public int set_colors (Video.Color[] colors, int first_color);
 		}
 
-		[CCode (cname = "SDL_PixelFormat", cheader_filename = "SDL2/SDL_pixels.h", free_function = "SDL_FreeFormat", ref_function = "SDL_PixelFormat_up", unref_function = "SDL_FreeFormat")]
+		[CCode (cname = "SDL_PixelFormat", cheader_filename = "SDL2/SDL_pixels.h", free_function = "SDL_FreeFormat")]
 		public class PixelFormat {
 			public Video.PixelRAWFormat format;
 			public Video.Palette palette;
@@ -2233,7 +2233,7 @@ namespace SDL {
 		[CCode (cname = "SDL_blit", cheader_filename = "SDL2/SDL_surface.h", has_target = false)]
 		public delegate int BlitFunc (Video.Surface src, Video.Rect? srcrect, Video.Surface dst, Video.Rect? dstrect);
 
-		[CCode (cname = "SDL_Surface", ref_function = "SDL_Surface_up", unref_function = "SDL_FreeSurface", cheader_filename = "SDL2/SDL_surface.h")]
+		[CCode (cname = "SDL_Surface", free_function = "SDL_FreeSurface", cheader_filename = "SDL2/SDL_surface.h")]
 		[Compact]
 		public class Surface {
 			public uint32 flags;
