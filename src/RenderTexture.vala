@@ -69,7 +69,7 @@ public class RenderTexture {
 		surface.set_colormod (r, g, b);
 	}
 
-	public Cairo.ImageSurface cairo_surface {
+	internal Cairo.ImageSurface cairo_surface {
 		get {
 			if (_cairo_surface == null)
 				_cairo_surface = new Cairo.ImageSurface.for_data((uchar[])surface.pixels, Cairo.Format.ARGB32, surface.w, surface.h, surface.w * 4);
@@ -77,7 +77,7 @@ public class RenderTexture {
 		}
 	}
 
-	public Cairo.Context ctx {
+	internal Cairo.Context ctx {
 		get {
 			if (_ctx == null)
 				_ctx = new Cairo.Context(cairo_surface);
