@@ -19,7 +19,7 @@ public class Sprite : Drawable {
      * @param texture The texture to be associated with the sprite.
      */
 	public Sprite (Texture texture) {
-		base(texture.width, texture.height);
+		base(texture.w, texture.h);
 		frames = new Gee.ArrayList<Frame>();
 		this.texture = texture;
 	}
@@ -29,7 +29,7 @@ public class Sprite : Drawable {
 			return (uint)Math.round(a * b);
 		}
 		Vector2i p = pos ?? position;
-		SDL.Video.Texture tex = texture.get_sdl_texture(renderer);
+		SDL.Video.Texture tex = texture.get_texture(renderer);
 		if (frames.size > 0){
 			var r = frames[index_frames].rect;
 			renderer.copyex(tex, r, {p.x, p.y, round(r.w, scale.x), round(r.h, scale.y)}, angle, {0, 0}, SDL.Video.RendererFlip.NONE);
