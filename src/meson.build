@@ -14,5 +14,6 @@ src_vala = [
   files('RenderTarget.vala'),
   files('Animation.vala'),
   files('Layer.vala'),
+  files('Transformable.vala'),
   files('RectangleShape.vala')
 ]

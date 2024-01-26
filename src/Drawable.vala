@@ -7,11 +7,10 @@ public enum Flip {
 	HORIZONTAL = SDL.Video.RendererFlip.HORIZONTAL,
 }
 
-
 /**
  * Represents an abstract class for objects that can be drawn.
  */
-public abstract class Drawable : Object{
+public abstract class Drawable : Object, Transformable{
 	protected Drawable(int width, int height) {
 		flip = NONE;
 		resize(width, height);
@@ -36,49 +35,9 @@ public abstract class Drawable : Object{
 	public abstract void draw(RenderTarget renderer, Vector2i? pos = null);
 
 	/**
-     * Moves the object by the specified offset in the x and y directions.
-     *
-     * @param x The offset to move the object in the x direction.
-     * @param y The offset to move the object in the y direction.
-     */
-	public void move (int x, int y) {
-		this.x += x;
-		this.y += y;
-	}
-
-
-
-	public void rescale(Vector2f scale) {
-		this.scale = {scale.x + scale.x, scale.y + scale.y};
-	}
-
-	public Vector2f scale {get;set;}
-
-	/**
      * Gets or sets the visibility of the drawable object (default is true).
      */
 	public bool visible {get;set;default=true;}
-
-	/**
-     * Gets or sets the x-coordinate of the drawable object's position.
-     */
-    public int x {
-        get { return position.x; }
-        set { position.x = value; }
-    }
-
-    /**
-     * Gets or sets the y-coordinate of the drawable object's position.
-     */
-    public int y {
-        get { return position.y; }
-        set { position.y = value; }
-    }
-
-    /**
-     * The drawable object's position.
-     */
-	public Vector2i position;
 
 	/**
 	 * the width of your entity
@@ -87,9 +46,7 @@ public abstract class Drawable : Object{
 	/**
 	 * the height of your entity
 	 */
-	public Flip flip;
 	public int height;
-	public Vector2i origin;
 
 	protected Rect rect {
 		get{
@@ -103,7 +60,11 @@ public abstract class Drawable : Object{
 	}
 	private Rect? _rect;
 
-	public double angle {get;set;}
+	private Flip flip {get;set;}
+	private Vector2f scale {get;set;}
+	private double angle {get;set;}
+	private Vector2i origin {get;set;}
+	private Vector2i position {get;set;}
 }
 
 }
