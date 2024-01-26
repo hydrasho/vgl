@@ -1,4 +1,4 @@
-project('burger', ['c', 'vala'], version : '3.0', default_options: ['optimization=3'])
+project('vgl', ['c', 'vala'], version : '3.0', default_options: ['optimization=3'])
 add_project_arguments('--enable-experimental', '--enable-checking', '--enable-experimental-non-null', language: 'vala')
 
 subdir('src')
@@ -14,10 +14,10 @@ dep_vala = [
   meson.get_compiler('c').find_library('m')
 ]
 
-burger_lib = library('burger',
+vgl_lib = library('vgl',
   src_vala,
-  vala_header: 'burger.h',
-  vala_vapi: 'burger.vapi',
+  vala_header: 'vgl.h',
+  vala_vapi: 'vgl.vapi',
   dependencies : dep_vala,
   install : true,
   install_dir: [true, true, true])
@@ -25,12 +25,12 @@ burger_lib = library('burger',
 pkg = import('pkgconfig')
 
 pkg.generate(
-    name : 'burger',
+    name : 'vgl',
     version : '3.0',
-    description : 'burger is a lib graphics for vala and C',
-    libraries : burger_lib,
+    description : 'vgl is a lib graphics for vala and C',
+    libraries : vgl_lib,
     requires : ['sdl2', 'glib-2.0', 'gobject-2.0', 'gee-0.8', 'cairo-gobject'],
 )
 
-libburger_dep = declare_dependency(link_with : burger_lib,  dependencies: dep_vala, include_directories : include_directories('.'))
-meson.override_dependency('burger', libburger_dep)
+libvgl_dep = declare_dependency(link_with : vgl_lib,  dependencies: dep_vala, include_directories : include_directories('.'))
+meson.override_dependency('vgl', libvgl_dep)

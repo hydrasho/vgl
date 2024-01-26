@@ -1,4 +1,4 @@
-namespace BG {
+namespace Vgl {
 /**
  * Represents a basic shape for draw a Rectangle
  */

@@ -1,4 +1,4 @@
-namespace BG {
+namespace Vgl {
 /**
 	* Represents a simple animation timer for managing timed animations.
 	*/

@@ -1,10 +1,10 @@
-namespace BG {
+namespace Vgl {
 
 /**
 * Simple example for use Event class
 *
 * {{{
-* using BG;
+* using Vgl;
 *
 * void main() {
 * 	var win = new Window("hello world");
@@ -40,7 +40,7 @@ public class Event {
 			instance = new Event();
 		return (!)instance;
 	}
-	private static BG.Event? instance = null;
+	private static Vgl.Event? instance = null;
 
 	/**
 	* Poll for currently pending events this fonction call all functions connected
@@ -108,14 +108,14 @@ public class Event {
 	* @param y window coordinates
 	* @param type_button TypeButton like Left|Right
 	*/
-	public signal void onMouseUp(int x, int y, BG.MouseType type_button);
+	public signal void onMouseUp(int x, int y, Vgl.MouseType type_button);
 	/**
 	* Signal triggered when a mouse button is pressed 
 	* @param x window coordinates
 	* @param y window coordinates
 	* @param type_button TypeButton like Left|Right
 	*/
-	public signal void onMouseDown(int x, int y, BG.MouseType type_button);
+	public signal void onMouseDown(int x, int y, Vgl.MouseType type_button);
 	/**
 	* Signal triggered when there is mouse movement 
 	* @param x window coordinates

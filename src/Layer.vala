@@ -1,4 +1,4 @@
-namespace BG {
+namespace Vgl {
 
 /**
  * Represents a layer where drawable element can be draw

@@ -1,4 +1,4 @@
-namespace BG {
+namespace Vgl {
 
 errordomain BurgerError {
 	TEXTURE_INVALID

@@ -1,0 +1,4 @@
+[wrap-git]
+url = https://gitlab.com/hydrasho/vgl
+revision = head
+depth = 1

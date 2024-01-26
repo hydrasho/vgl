@@ -1,4 +1,4 @@
-namespace BG {
+namespace Vgl {
 /**
  * Represents a frame in an animation with a specified position and dimensions.
  */

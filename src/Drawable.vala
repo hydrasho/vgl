@@ -1,5 +1,5 @@
 
-namespace BG {
+namespace Vgl {
 
 public enum Flip {
 	NONE = SDL.Video.RendererFlip.NONE,

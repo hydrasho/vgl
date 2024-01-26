@@ -1,4 +1,4 @@
-namespace BG {
+namespace Vgl {
 
 /**
  * Represents a rendering texture, allowing creation from a file or with specified dimensions.

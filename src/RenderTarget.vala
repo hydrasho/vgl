@@ -1,4 +1,4 @@
-namespace BG {
+namespace Vgl {
 	/**
 	* Represents a rendering target, allowing rendering to a texture or a window.
 	*/
@@ -35,7 +35,7 @@ namespace BG {
 			_renderer.fill_rect ({0, 0, w, h});
 		}
 
-		internal void copy (SDL.Video.Texture texture, Rect? srcrect, Rect? dstrect, double angle, Vector2i origin, BG.Flip flip) {
+		internal void copy (SDL.Video.Texture texture, Rect? srcrect, Rect? dstrect, double angle, Vector2i origin, Vgl.Flip flip) {
 			_renderer.copyex(texture, srcrect, dstrect, angle, {origin.x, origin.y}, (SDL.Video.RendererFlip)flip);
 		}
 		internal void present() {

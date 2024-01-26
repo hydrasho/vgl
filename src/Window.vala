@@ -1,10 +1,10 @@
-namespace BG {
+namespace Vgl {
 
 /**
  * Represents a graphical window with an associated renderer.
  *
  * {{{
- * using BG;
+ * using Vgl;
  * 
  * void main() {
  * 	var win = new Window("my supra-title", 100, 150);

@@ -1,4 +1,4 @@
-namespace BG {
+namespace Vgl {
 
 /**
 * Abstract class for all Shape class

@@ -1,5 +1,5 @@
 
-namespace BG {
+namespace Vgl {
 
 /**
 * Represents a shape intended for drawing using Cairo graphics, inheriting from the base Shape class.
