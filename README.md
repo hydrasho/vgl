@@ -1,6 +1,6 @@
 # Vala Graphic Library
 
-## [The Documentation is here: Click on me](https://vgl-hydrasho-1cf73bf5fedac8972823d83b8ce202a4bf200d4d798061d.gitlab.io/vgl/index.htm)
+## [The Documentation is here: Click on me](https://hydrasho.gitlab.io/vgl)
 
 # how install it ?
 
