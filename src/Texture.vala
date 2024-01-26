@@ -1,4 +1,4 @@
-namespace BG {
+namespace Vgl {
 
 /**
  * Represents a texture for graphical elements.
