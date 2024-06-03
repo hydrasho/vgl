@@ -1,29 +1,40 @@
 project('new_vgl', ['c', 'vala'],
-  version : '0.1',
+  version : '3.0',
   default_options : ['warning_level=3'])
 
-executable('new_vgl',
-           'Texture.vala',
-           'Types.vala',
-           'Sprite.vala',
-           'RenderTarget.vala',
-           'RenderTexture.vala',
-           'Drawable.vala',
-           'main.vala',
-           'Transformable.vala',
-           'RenderWindow.vala',
-           'Window.vala',
-           'IWindow.vala',
-           'Shape.vala',
-           'RectangleShape.vala',
-           'CircleShape.vala',
-           'Text.vala',
-           c_args: '-w',
-           dependencies : [
-             meson.get_compiler('c').find_library('m'),
-              dependency('glib-2.0'),
-              dependency('gobject-2.0'),
-              dependency('sdl2'),
-              dependency('cairo'),
-              dependency('gio-2.0')],
-           install : true)
+dep_vala_lib = [
+  meson.get_compiler('c').find_library('m'),
+  dependency('glib-2.0'),
+  dependency('gobject-2.0'),
+  dependency('sdl2'),
+  dependency('cairo'),
+  dependency('gio-2.0')
+]
+
+lib_vgl = library('vgl-3.0',
+  'Texture.vala',
+  'Types.vala',
+  'Sprite.vala',
+  'RenderTarget.vala',
+  'RenderTexture.vala',
+  'Drawable.vala',
+  'Transformable.vala',
+  'RenderWindow.vala',
+  'Window.vala',
+  'IWindow.vala',
+  'Shape.vala',
+  'RectangleShape.vala',
+  'CircleShape.vala',
+  'Text.vala',
+  c_args: '-w',
+  dependencies: dep_vala_lib,
+  install : true)
+
+
+dep_vgl = declare_dependency(link_with : lib_vgl,  dependencies: dep_vala_lib, include_directories : include_directories('.'))
+meson.override_dependency('vgl-3.0', dep_vgl)
+
+executable ('a.out',
+  'main.vala',
+  c_args : '-w',
+  dependencies: dep_vgl)
