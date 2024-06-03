@@ -1,19 +1,32 @@
 using Vgl;
 
 public class Vgl.Sprite : Transformable, Drawable {
-	public Sprite (Texture texture) {
-		this.texture = texture;
-		textureRect = {
-			0,
-			0,
-			texture.width,
-			texture.height
-		};
+	public Sprite (Texture? texture = null) {
+		if (texture != null)
+			this.texture = texture;
+		else 
+			textureRect = {};
 	}
-	public Rect textureRect {get; set;}
 
 	void draw (RenderTarget target) {
-		target.renderer.copyex(texture[target], textureRect, {position.x, position.y, _textureRect.w, textureRect.h}, rotation, {origin.x, origin.y}, SDL.Video.RendererFlip.NONE);
+		target.renderer.copyex(_texture[target].texture, _textureRect, {position.x, position.y, _textureRect.w, _textureRect.h}, rotation, {origin.x, origin.y}, SDL.Video.RendererFlip.NONE);
 	}
-	Texture texture;
+
+	/* Property */
+	public Rect textureRect {get; set;}
+	private Texture _texture;
+	public Texture texture {
+		get {
+			return _texture;
+		}
+		owned set {
+			_texture = value;
+			textureRect = {
+				0,
+				0,
+				_texture.width,
+				_texture.height
+			};
+		}
+	}
 }
