@@ -28,7 +28,8 @@ lib_vgl = library('vgl-3.0',
   'Text.vala',
   c_args: '-w',
   dependencies: dep_vala_lib,
-  install : true)
+  install : true,
+  install_dir : [true, true, true])
 
 
 dep_vgl = declare_dependency(link_with : lib_vgl,  dependencies: dep_vala_lib, include_directories : include_directories('.'))
