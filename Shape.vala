@@ -1,13 +1,13 @@
 using Vgl;
 
-public abstract class Vgl.Shape : Transformable, Drawable {
+public abstract class Vgl.Shape : Drawable {
 	protected Shape () {
 		real_size = {0, 0, 0, 0};
 		width_max = 0;
 		height_max = 0;
 	}
 
-	void draw (RenderTarget target) {
+	public override void draw (RenderTarget target) {
 		unowned var t = texture[target];
 		if (t.need_update) {
 			t.texture.update (real_size, texture.surface.pixels, texture.surface.pitch);

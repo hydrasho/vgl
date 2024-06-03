@@ -1,6 +1,6 @@
 using Vgl;
 
-public class Vgl.Sprite : Transformable, Drawable {
+public class Vgl.Sprite : Drawable {
 	public Sprite (Texture? texture = null) {
 		if (texture != null)
 			this.texture = texture;
@@ -8,7 +8,7 @@ public class Vgl.Sprite : Transformable, Drawable {
 			textureRect = {};
 	}
 
-	void draw (RenderTarget target) {
+	public override void draw (RenderTarget target) {
 		target.renderer.copyex(_texture[target].texture, _textureRect, {position.x, position.y, _textureRect.w, _textureRect.h}, rotation, {origin.x, origin.y}, SDL.Video.RendererFlip.NONE);
 	}
 

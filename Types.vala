@@ -30,7 +30,7 @@ namespace Vgl {
 		uint8 blue;
 		uint8 alpha;
 
-		public static Color Red = {255, 0, 0, 255};
-		public static Color White = {255, 255, 255, 255};
+		public const Color Red = {255, 0, 0, 255};
+		public const Color White = {255, 255, 255, 255};
 	}
 }

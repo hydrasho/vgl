@@ -1,13 +1,13 @@
 using Vgl;
 
-public class Vgl.Transformable {
-	public Vector2i position;
-	public Vector2f scale;
-	public double rotation;
-	public Vector2i origin;
+public interface Vgl.Transformable {
+
+	public abstract Vector2i position {get;set;}
+	public abstract Vector2f scale {get;set;}
+	public abstract double rotation {get;set;}
+	public abstract Vector2i origin {get;set;}
 
 	public void move (Vector2i offset) {
-		print("MOVE %d %d\n", position.x, position.y);
 		position.x += offset.x;
 		position.y += offset.y;
 	}
