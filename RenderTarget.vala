@@ -1,6 +1,6 @@
 using Vgl;
 
-public class Vgl.RenderTarget {
+public class Vgl.RenderTarget : Object {
 	protected RenderTarget(){
 
 	}

@@ -1,19 +1,28 @@
 namespace Vgl {
 
-	[SimpleType]
 	public struct Vector2i {
+		Vector2i (int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
 		int x;
 		int y;
 	}
 	
-	[SimpleType]
 	public struct Vector2u {
+		Vector2u (uint x, uint y) {
+			this.x = x;
+			this.y = y;
+		}
 		uint x;
 		uint y;
 	}
 
-	[SimpleType]
 	public struct Vector2f {
+		Vector2f (double x, double y) {
+			this.x = x;
+			this.y = y;
+		}
 		double x;
 		double y;
 	}

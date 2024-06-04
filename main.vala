@@ -9,6 +9,12 @@ void main()
 	var circle = new CircleShape(100.0);
 	var rect = new RectangleShape();
 	// rect.color = {55, 90, 20, 155};
+	var renderTexture = new Vgl.RenderTexture(500, 500);
+	renderTexture.clear();
+	renderTexture.draw(sprite);
+	renderTexture.draw(circle);
+	renderTexture.display();
+	renderTexture.texture.save_bmp("abc.bmp");
 	
 	var text = new Text("Hello", 50);
 	text.position.x = 20;

@@ -1,6 +1,6 @@
 using Vgl;
 
-public class Vgl.Sprite : Drawable {
+public class Vgl.Sprite : Vgl.Drawable {
 	public Sprite (Texture? texture = null) {
 		if (texture != null)
 			this.texture = texture;

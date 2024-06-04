@@ -1,6 +1,6 @@
 using Vgl;
 
-public class Vgl.Texture{
+public class Vgl.Texture : Object{
 	public class Texture(string file) {
 		this.from_bmp(file);
 	}
@@ -45,7 +45,7 @@ public class Vgl.Texture{
 		return surface.set_cliprect (rect);
 	}
 
-	internal unowned UTexture get(RenderTarget target) {
+	internal new unowned UTexture get(RenderTarget target) {
 		if (!(target in textures)) {
 			var tmp = SDL.Video.Texture.create_from_surface(target.renderer, surface);
 			textures[target] = new UTexture((owned)tmp); 

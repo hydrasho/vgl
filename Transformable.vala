@@ -1,6 +1,6 @@
 using Vgl;
 
-public interface Vgl.Transformable {
+public interface Vgl.Transformable : Object {
 
 	public abstract Vector2i position {get;set;}
 	public abstract Vector2f scale {get;set;}

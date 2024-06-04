@@ -290,7 +290,7 @@ public enum Vgl.KeyCode {
 }
 
 
-public class Vgl.Event {
+public class Vgl.Event : Object {
 	public Event() {
 
 	}

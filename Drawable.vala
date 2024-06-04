@@ -1,6 +1,6 @@
 using Vgl;
 
-public abstract class Vgl.Drawable : Transformable {
+public abstract class Vgl.Drawable : Object, Vgl.Transformable {
 	public abstract void draw (RenderTarget target);
 	public Vector2i position {get;set;}
 	public Vector2f scale {get;set;}
